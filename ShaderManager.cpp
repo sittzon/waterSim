@@ -30,7 +30,7 @@ GLuint ShaderManager::loadShaders(const string vert, const string frag)
 	{
 		//Create shaders and compile
 		//--------------------------
-		vs = glCreateShader(GL_VERTEX_SHADER);
+		vs = glCreateShader(GL_VERTEX_SHADER);  //Fel!
 		fs = glCreateShader(GL_FRAGMENT_SHADER);
 		glShaderSource(vs, 1, &vertFile, NULL);
 		glShaderSource(fs, 1, &fragFile, NULL);
@@ -39,6 +39,7 @@ GLuint ShaderManager::loadShaders(const string vert, const string frag)
 
 		//Shaders compiled successfully?
 		//------------------------------
+
 		GLint status;
 		glGetShaderiv(vs, GL_COMPILE_STATUS, &status);
 

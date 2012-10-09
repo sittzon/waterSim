@@ -31,10 +31,15 @@
 			<Add directory="include" />
 		</Compiler>
 		<Linker>
+			<Add option="-lglu32" />
+			<Add option="-lopengl32" />
+			<Add option="-glew32" />
 			<Add library="lib\freeglut.lib" />
 			<Add library="lib\libglew32.a" />
-			<Add library="glut" />
-			<Add library="lib\GLee.lib" />
+			<Add library="opengl32" />
+			<Add library="glu32" />
+			<Add library="gdi32" />
+			<Add directory="..\waterSim" />
 			<Add directory="lib" />
 		</Linker>
 		<Unit filename="InputHandler.cpp" />
@@ -43,6 +48,8 @@
 		<Unit filename="ObjHandler.h" />
 		<Unit filename="ShaderManager.cpp" />
 		<Unit filename="ShaderManager.h" />
+		<Unit filename="bmpReader.cpp" />
+		<Unit filename="bmpReader.h" />
 		<Unit filename="camera.cpp" />
 		<Unit filename="camera.h" />
 		<Unit filename="globals.cpp" />

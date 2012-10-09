@@ -3,9 +3,11 @@
 
 #ifdef _WIN32
     //#include <windows.h>
-    //#define GLEW_STATIC
+    #ifndef GLEW_STATIC
+    #define GLEW_STATIC
+    #endif
     #include <glew.h>
-    #include <wglew.h>
+    //#include <wglew.h>
     #include <freeglut.h>
 #elif __APPLE__
     #include <OpenGL/gl3.h>
@@ -18,6 +20,7 @@
     //#include <GL/glut.h>
     //#include <GL/gl.h>
 #endif
+
 
 #include <iostream>
 #include <stdio.h>
@@ -40,7 +43,7 @@ ObjHandler* OH = Glob->Load;
 InputHandler* IH = Glob->IH;
 GLuint shaderProgram, velocityFieldProgram;
 Mat projMatrix, modelToWorld, worldToView, lightSourcesColors, lightSourcesDirections, lightSourcesOn;
-ShaderManager* SM = Glob->SM;
+ShaderManager* SM = new ShaderManager();//Glob->SM;
 Model* model = new Model();
 camera* cam = &Glob->cam;
 GLuint vectorField, scalarField;
@@ -67,6 +70,7 @@ void init()
     modelToWorld.makeEye();
     Glob->worldToView.makeEye();
 
+
     /*
     lightSourcesColors.makeEye();
     lightSourcesColors[12] = 1.0;
@@ -79,16 +83,21 @@ void init()
     lightSourcesOn[2] = 1;
     lightSourcesOn[3] = 1;
 
+
+
 	//Load, compile and link shaders to shadershaderProgram
 	shaderProgram = SM->loadShaders("standard.vert", "standard.frag");
 	velocityFieldProgram = SM->loadShaders("velFieldComp.vert", "velFieldComp.frag");
     glUseProgram(shaderProgram);
 
+
     //model = OH->loadObj("models/stdSphere.obj");
     model = OH->loadObj("models/billboard.obj");
 
+
     //Set camera position
     cam->update();
+
 
     //Create FBO to do texture calculations = velocity field computations
     createFBOAndBindTexture(vectorFieldFbo, vectorFieldRenderBuffer, vectorField, header_data, fieldWidth, fieldHeight);
@@ -107,6 +116,8 @@ void init()
 	//glEnable(GL_CULL_FACE);
     //glEnable(GL_TEXTURE_2D);
     //glEnable(GL_TEXTURE_3D);
+
+
 }
 
 void reshape(int w, int h)
@@ -178,11 +189,11 @@ void display()
 
     //Render to texture FBO = Do calculations!
     //-----------------------------------------
-    glBindFramebuffer(GL_FRAMEBUFFER, vectorFieldFbo);
+    /*glBindFramebuffer(GL_FRAMEBUFFER, vectorFieldFbo);
     glUseProgram(velocityFieldProgram);
     glActiveTexture(GL_TEXTURE0);
     glUniform1i(glGetUniformLocation(velocityFieldProgram, "texUnit"), 0);
-
+*/
 	//Swap buffers - redraw
 	glutSwapBuffers();
 
@@ -226,8 +237,6 @@ void glInit(int &argc, char **argv, int xwidth, int ywidth)
     glutInitWindowSize(xwidth, ywidth);
     glutCreateWindow("Awesome Water Simulator");
 
-    init();
-
     //Establish Callbacks
     glutDisplayFunc(display);
     glutReshapeFunc(reshape);
@@ -261,7 +270,17 @@ void glInit(int &argc, char **argv, int xwidth, int ywidth)
 
 int main(int argc, char **argv)
 {
+
     glInit(argc, argv, 1680/2, 1050/2);
+    GLenum err = glewInit();
+    if (GLEW_OK != err)
+    {
+        /* Problem: glewInit failed, something is seriously wrong. */
+        fprintf(stderr, "GLEW Error: %s\n", glewGetErrorString(err));
+    }
+
+
+    init();
     glutMainLoop();
 
     return 0;

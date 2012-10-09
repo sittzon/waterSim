@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="TSBK07 - u3D" />
+		<Option pch_mode="0" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin\Debug\TSBK07 - u3D" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Debug\" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin\Release\TSBK07 - u3D" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Release\" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+			<Add directory="include" />
+		</Compiler>
+		<Linker>
+			<Add option="-lglu32" />
+			<Add option="-lopengl32" />
+			<Add option="-glew32" />
+			<Add library="lib\freeglut.lib" />
+			<Add library="lib\libglew32.a" />
+			<Add library="opengl32" />
+			<Add library="glu32" />
+			<Add library="gdi32" />
+			<Add directory="..\TSBK07 - u3D" />
+			<Add directory="lib" />
+		</Linker>
+		<Unit filename="InputHandler.cpp" />
+		<Unit filename="InputHandler.h" />
+		<Unit filename="ObjHandler.cpp" />
+		<Unit filename="ObjHandler.h" />
+		<Unit filename="ShaderManager.cpp" />
+		<Unit filename="ShaderManager.h" />
+		<Unit filename="bmpReader.cpp" />
+		<Unit filename="bmpReader.h" />
+		<Unit filename="button.cpp" />
+		<Unit filename="button.h" />
+		<Unit filename="buttonHandler.cpp" />
+		<Unit filename="buttonHandler.h" />
+		<Unit filename="camera.cpp" />
+		<Unit filename="camera.h" />
+		<Unit filename="danielInit.cpp" />
+		<Unit filename="danielInit.h" />
+		<Unit filename="displayFunctions.cpp" />
+		<Unit filename="displayFunctions.h" />
+		<Unit filename="drawnNormalsHandler.cpp" />
+		<Unit filename="drawnNormalsHandler.h" />
+		<Unit filename="drawnPointsHandler.cpp" />
+		<Unit filename="drawnPointsHandler.h" />
+		<Unit filename="globals.cpp" />
+		<Unit filename="globals.h" />
+		<Unit filename="keyboardFunctions.cpp" />
+		<Unit filename="keyboardFunctions.h" />
+		<Unit filename="loadImageData.cpp" />
+		<Unit filename="loadImageData.h" />
+		<Unit filename="magnusInit.cpp" />
+		<Unit filename="magnusInit.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="model.cpp" />
+		<Unit filename="model.h" />
+		<Unit filename="motionFunctions.cpp" />
+		<Unit filename="motionFunctions.h" />
+		<Unit filename="mouseFunctions.cpp" />
+		<Unit filename="mouseFunctions.h" />
+		<Unit filename="normals.frag" />
+		<Unit filename="normals.geom" />
+		<Unit filename="normals.vert" />
+		<Unit filename="points.frag" />
+		<Unit filename="points.geom" />
+		<Unit filename="points.vert" />
+		<Unit filename="renderToBitmap.cpp" />
+		<Unit filename="renderToBitmap.h" />
+		<Unit filename="resources.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
+		<Unit filename="selectVertex.cpp" />
+		<Unit filename="selectVertex.h" />
+		<Unit filename="shadowApplying.frag" />
+		<Unit filename="shadowApplying.vert" />
+		<Unit filename="shadowMapsLightRenderProgram.frag" />
+		<Unit filename="shadowMapsLightRenderProgram.vert" />
+		<Unit filename="shadowMapsProgram.frag" />
+		<Unit filename="shadowMapsProgram.vert" />
+		<Unit filename="shadowSmoothing.frag" />
+		<Unit filename="shadowSmoothing.vert" />
+		<Unit filename="showTexture.frag" />
+		<Unit filename="showTexture.vert" />
+		<Unit filename="sprite.cpp" />
+		<Unit filename="sprite.frag" />
+		<Unit filename="sprite.h" />
+		<Unit filename="sprite.vert" />
+		<Unit filename="standard.frag" />
+		<Unit filename="standard.geom" />
+		<Unit filename="standard.vert" />
+		<Unit filename="standardButtons.cpp" />
+		<Unit filename="standardButtons.h" />
+		<Unit filename="standardTools.cpp" />
+		<Unit filename="standardTools.h" />
+		<Unit filename="tool.cpp" />
+		<Unit filename="tool.h" />
+		<Unit filename="toolHandler.cpp" />
+		<Unit filename="toolHandler.h" />
+		<Unit filename="utils.cpp" />
+		<Unit filename="utils.h" />
+		<Unit filename="vectorUtils.cpp" />
+		<Unit filename="vectorUtils.h" />
+		<Unit filename="victorInit.cpp" />
+		<Unit filename="victorInit.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+			<envvars />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

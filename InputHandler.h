@@ -11,6 +11,7 @@
 
 #include <iostream>
 #include <vector>
+#include <freeglut.h>
 //#include "globals.h"
 
 using namespace std;

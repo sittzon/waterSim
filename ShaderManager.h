@@ -12,24 +12,26 @@
 #include <string>
 #include <cstdlib>
 
-#include <glew.h>
 
-//#include <freeglut.h>
-/*
 #ifdef _WIN32
-    #include <windows.h>
-   #define GLEW_STATIC
+    //#include <windows.h>
+    #ifndef GLEW_STATIC
+    #define GLEW_STATIC
+    #endif
     #include <glew.h>
-    #include <wglew.h>
+    //#include <wglew.h>
     #include <freeglut.h>
 #elif __APPLE__
     #include <OpenGL/gl3.h>
     #include <freeglut.h>
 #else
-    #include <GL/glut.h>
+    #include <freeglut.h>
+    //#include <GL/glut.h>
     #include <GL/gl.h>
+    #include <GL/glext.h>
+    //#include <GL/glut.h>
+    //#include <GL/gl.h>
 #endif
-*/
 
 using namespace std;
 

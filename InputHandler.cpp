@@ -6,7 +6,7 @@
 #include "InputHandler.h"
 #include "camera.h"
 
-#include <freeglut.h>
+//#include <freeglut.h>
 
 using namespace std;
 
