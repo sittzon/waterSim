@@ -1,0 +1,358 @@
+# depslib dependency file v1.0
+1348827136 source:/edu/magst882/TSBB11/grupp1/code/TempVisualize/ObjHandler.cpp
+	"ObjHandler.h"
+
+1348827305 /edu/magst882/TSBB11/grupp1/code/TempVisualize/ObjHandler.h
+	<iostream>
+	<vector>
+	<string>
+	<iomanip>
+	<fstream>
+	<cctype>
+	<time.h>
+	<stdio.h>
+	<math.h>
+	<GL/glut.h>
+	<GL/gl.h>
+	"model.h"
+	"vectorUtils.h"
+
+1348827066 /edu/magst882/TSBB11/grupp1/code/TempVisualize/model.h
+	<string>
+	<vector>
+	"ObjHandler.h"
+	"vectorUtils.h"
+
+1347524857 /edu/magst882/TSBB11/grupp1/code/TempVisualize/vectorUtils.h
+	<iostream>
+
+1348826759 source:/edu/magst882/TSBB11/grupp1/code/TempVisualize/ShaderManager.cpp
+	<iostream>
+	<fstream>
+	<iomanip>
+	<string.h>
+	"ShaderManager.h"
+
+1347524856 /edu/magst882/TSBB11/grupp1/code/TempVisualize/ShaderManager.h
+	<string>
+	<windows.h>
+	<glew.h>
+	<wglew.h>
+	<freeglut.h>
+	<OpenGL/gl3.h>
+	<freeglut.h>
+	<GL/glut.h>
+	<GL/gl.h>
+
+1347524842 /edu/magst882/TSBB11/grupp1/code/TempVisualize/include/freeglut.h
+	"freeglut_std.h"
+	"freeglut_ext.h"
+
+1347524842 /edu/magst882/TSBB11/grupp1/code/TempVisualize/include/freeglut_std.h
+	<windows.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
+1347524842 /edu/magst882/TSBB11/grupp1/code/TempVisualize/include/freeglut_ext.h
+	<stdarg.h>
+
+1348828629 source:/edu/magst882/TSBB11/grupp1/code/TempVisualize/camera.cpp
+	"camera.h"
+
+1348828618 /edu/magst882/TSBB11/grupp1/code/TempVisualize/camera.h
+	<GL/gl.h>
+	"utils.h"
+
+1347524856 /edu/magst882/TSBB11/grupp1/code/TempVisualize/utils.h
+	<math.h>
+	"model.h"
+
+1348827317 source:/edu/magst882/TSBB11/grupp1/code/TempVisualize/model.cpp
+	<windows.h>
+	<glew.h>
+	<wglew.h>
+	<freeglut.h>
+	<OpenGL/gl3.h>
+	<freeglut.h>
+	<GL/glut.h>
+	<GL/gl.h>
+	"model.h"
+	<vector>
+
+1347524857 source:/edu/magst882/TSBB11/grupp1/code/TempVisualize/utils.cpp
+	<iostream>
+	<math.h>
+	"utils.h"
+
+1348827335 source:/edu/magst882/TSBB11/grupp1/code/TempVisualize/vectorUtils.cpp
+	"vectorUtils.h"
+	<math.h>
+	<iostream>
+	<iomanip>
+
+1349698366 source:/edu/magst882/TSBB11/grupp1/code/TempVisualize/main.cpp
+	<freeglut.h>
+	<GL/gl.h>
+	<iostream>
+	<stdio.h>
+	"ShaderManager.h"
+	"ObjHandler.h"
+	"utils.h"
+	"camera.h"
+
+1348827136 source:/edu/magst882/TSBK03/projekt/ObjHandler.cpp
+	"ObjHandler.h"
+
+1348827305 /edu/magst882/TSBK03/projekt/ObjHandler.h
+	<iostream>
+	<vector>
+	<string>
+	<iomanip>
+	<fstream>
+	<cctype>
+	<time.h>
+	<stdio.h>
+	<math.h>
+	<GL/glut.h>
+	<GL/gl.h>
+	"model.h"
+	"vectorUtils.h"
+
+1348827066 /edu/magst882/TSBK03/projekt/model.h
+	<string>
+	<vector>
+	"ObjHandler.h"
+	"vectorUtils.h"
+
+1347524857 /edu/magst882/TSBK03/projekt/vectorUtils.h
+	<iostream>
+
+1348826759 source:/edu/magst882/TSBK03/projekt/ShaderManager.cpp
+	<iostream>
+	<fstream>
+	<iomanip>
+	<string.h>
+	"ShaderManager.h"
+
+1347524856 /edu/magst882/TSBK03/projekt/ShaderManager.h
+	<string>
+	<windows.h>
+	<glew.h>
+	<wglew.h>
+	<freeglut.h>
+	<OpenGL/gl3.h>
+	<freeglut.h>
+	<GL/glut.h>
+	<GL/gl.h>
+
+1347524842 /edu/magst882/TSBK03/projekt/include/glew.h
+	<stddef.h>
+	<inttypes.h>
+	<stdint.h>
+	<inttypes.h>
+	<OpenGL/glu.h>
+	<GL/glu.h>
+
+1347524842 /edu/magst882/TSBK03/projekt/include/wglew.h
+	<windows.h>
+
+1347524842 /edu/magst882/TSBK03/projekt/include/freeglut.h
+	"freeglut_std.h"
+	"freeglut_ext.h"
+
+1347524842 /edu/magst882/TSBK03/projekt/include/freeglut_std.h
+	<windows.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
+1347524842 /edu/magst882/TSBK03/projekt/include/freeglut_ext.h
+	<stdarg.h>
+
+1348828629 source:/edu/magst882/TSBK03/projekt/camera.cpp
+	"camera.h"
+
+1348828618 /edu/magst882/TSBK03/projekt/camera.h
+	<GL/gl.h>
+	"utils.h"
+
+1347524856 /edu/magst882/TSBK03/projekt/utils.h
+	<math.h>
+	"model.h"
+
+1349770793 source:/edu/magst882/TSBK03/projekt/main.cpp
+	<freeglut.h>
+	<GL/gl.h>
+	<iostream>
+	<stdio.h>
+	"ShaderManager.h"
+	"ObjHandler.h"
+	"utils.h"
+	"camera.h"
+
+1348827317 source:/edu/magst882/TSBK03/projekt/model.cpp
+	<windows.h>
+	<glew.h>
+	<wglew.h>
+	<freeglut.h>
+	<OpenGL/gl3.h>
+	<freeglut.h>
+	<GL/glut.h>
+	<GL/gl.h>
+	"model.h"
+	<vector>
+
+1347524857 source:/edu/magst882/TSBK03/projekt/utils.cpp
+	<iostream>
+	<math.h>
+	"utils.h"
+
+1348827335 source:/edu/magst882/TSBK03/projekt/vectorUtils.cpp
+	"vectorUtils.h"
+	<math.h>
+	<iostream>
+	<iomanip>
+
+1349771841 source:/edu/magst882/TSBK03/projekt/waterSim/ObjHandler.cpp
+	"ObjHandler.h"
+
+1348827305 /edu/magst882/TSBK03/projekt/waterSim/ObjHandler.h
+	<iostream>
+	<vector>
+	<string>
+	<iomanip>
+	<fstream>
+	<cctype>
+	<time.h>
+	<stdio.h>
+	<math.h>
+	<GL/glut.h>
+	<GL/gl.h>
+	"model.h"
+	"vectorUtils.h"
+
+1348827066 /edu/magst882/TSBK03/projekt/waterSim/model.h
+	<string>
+	<vector>
+	"ObjHandler.h"
+	"vectorUtils.h"
+
+1347524857 /edu/magst882/TSBK03/projekt/waterSim/vectorUtils.h
+	<iostream>
+
+1349775329 source:/edu/magst882/TSBK03/projekt/waterSim/ShaderManager.cpp
+	<iostream>
+	<fstream>
+	<iomanip>
+	<string.h>
+	"ShaderManager.h"
+
+1349795218 /edu/magst882/TSBK03/projekt/waterSim/ShaderManager.h
+	<string>
+	<windows.h>
+	<glew.h>
+	<wglew.h>
+	<freeglut.h>
+	<OpenGL/gl3.h>
+	<freeglut.h>
+	<GL/glut.h>
+	<GL/gl.h>
+
+1347524842 /edu/magst882/TSBK03/projekt/waterSim/include/glew.h
+	<stddef.h>
+	<inttypes.h>
+	<stdint.h>
+	<inttypes.h>
+	<OpenGL/glu.h>
+	<GL/glu.h>
+
+1347524842 /edu/magst882/TSBK03/projekt/waterSim/include/wglew.h
+	<windows.h>
+
+1347524842 /edu/magst882/TSBK03/projekt/waterSim/include/freeglut.h
+	"freeglut_std.h"
+	"freeglut_ext.h"
+
+1347524842 /edu/magst882/TSBK03/projekt/waterSim/include/freeglut_std.h
+	<windows.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
+1347524842 /edu/magst882/TSBK03/projekt/waterSim/include/freeglut_ext.h
+	<stdarg.h>
+
+1349794177 source:/edu/magst882/TSBK03/projekt/waterSim/camera.cpp
+	"camera.h"
+	"globals.h"
+
+1349794143 /edu/magst882/TSBK03/projekt/waterSim/camera.h
+	<GL/gl.h>
+	"utils.h"
+
+1349795272 /edu/magst882/TSBK03/projekt/waterSim/utils.h
+	<math.h>
+	"model.h"
+
+1349795166 source:/edu/magst882/TSBK03/projekt/waterSim/main.cpp
+	<freeglut.h>
+	<GL/gl.h>
+	<GL/glext.h>
+	<iostream>
+	<stdio.h>
+	"ShaderManager.h"
+	"ObjHandler.h"
+	"InputHandler.h"
+	"utils.h"
+	"camera.h"
+	"globals.h"
+	"leaves.h"
+
+1349771820 source:/edu/magst882/TSBK03/projekt/waterSim/model.cpp
+	<windows.h>
+	<glew.h>
+	<wglew.h>
+	<freeglut.h>
+	<OpenGL/gl3.h>
+	<freeglut.h>
+	<GL/glut.h>
+	<GL/gl.h>
+	"model.h"
+	<vector>
+
+1347524857 source:/edu/magst882/TSBK03/projekt/waterSim/utils.cpp
+	<iostream>
+	<math.h>
+	"utils.h"
+
+1348827335 source:/edu/magst882/TSBK03/projekt/waterSim/vectorUtils.cpp
+	"vectorUtils.h"
+	<math.h>
+	<iostream>
+	<iomanip>
+
+1349782679 /edu/magst882/TSBK03/projekt/waterSim/leaves.h
+
+1349789940 /edu/magst882/TSBK03/projekt/waterSim/InputHandler.h
+	<iostream>
+	<vector>
+
+1349794521 source:/edu/magst882/TSBK03/projekt/waterSim/InputHandler.cpp
+	"utils.h"
+	"globals.h"
+	"InputHandler.h"
+	"camera.h"
+	<freeglut.h>
+
+1349794133 /edu/magst882/TSBK03/projekt/waterSim/globals.h
+	<vector>
+	"ShaderManager.h"
+	"ObjHandler.h"
+	"InputHandler.h"
+	"vectorUtils.h"
+	"camera.h"
+
+1349791845 source:/edu/magst882/TSBK03/projekt/waterSim/globals.cpp
+	"globals.h"
+

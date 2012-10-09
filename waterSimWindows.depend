@@ -1,0 +1,144 @@
+# depslib dependency file v1.0
+1349804664 source:b:\Övrigt\skola\tsbk03\projekt\watersim\inputhandler.cpp
+	"utils.h"
+	"globals.h"
+	"InputHandler.h"
+	"camera.h"
+	<freeglut.h>
+
+1349800040 b:\Övrigt\skola\tsbk03\projekt\watersim\utils.h
+	<math.h>
+	"model.h"
+
+1348827066 b:\Övrigt\skola\tsbk03\projekt\watersim\model.h
+	<string>
+	<vector>
+	"ObjHandler.h"
+	"vectorUtils.h"
+
+1349804934 b:\Övrigt\skola\tsbk03\projekt\watersim\objhandler.h
+	<iostream>
+	<vector>
+	<string>
+	<iomanip>
+	<fstream>
+	<cctype>
+	<time.h>
+	<stdio.h>
+	<math.h>
+	"model.h"
+	"vectorUtils.h"
+
+1347524857 b:\Övrigt\skola\tsbk03\projekt\watersim\vectorutils.h
+	<iostream>
+
+1349794133 b:\Övrigt\skola\tsbk03\projekt\watersim\globals.h
+	<vector>
+	"ShaderManager.h"
+	"ObjHandler.h"
+	"InputHandler.h"
+	"vectorUtils.h"
+	"camera.h"
+
+1349804872 b:\Övrigt\skola\tsbk03\projekt\watersim\shadermanager.h
+	<string>
+	<cstdlib>
+	<glew.h>
+	<windows.h>
+	<glew.h>
+	<wglew.h>
+	<freeglut.h>
+	<OpenGL/gl3.h>
+	<freeglut.h>
+	<GL/glut.h>
+	<GL/gl.h>
+
+1349797895 b:\Övrigt\skola\tsbk03\projekt\watersim\include\glew.h
+	<stddef.h>
+	<inttypes.h>
+	<stdint.h>
+	<inttypes.h>
+	<OpenGL/glu.h>
+	<GL/glu.h>
+
+1347524842 b:\Övrigt\skola\tsbk03\projekt\watersim\include\wglew.h
+	<windows.h>
+
+1347524842 b:\Övrigt\skola\tsbk03\projekt\watersim\include\freeglut.h
+	"freeglut_std.h"
+	"freeglut_ext.h"
+
+1347524842 b:\Övrigt\skola\tsbk03\projekt\watersim\include\freeglut_std.h
+	<windows.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
+1347524842 b:\Övrigt\skola\tsbk03\projekt\watersim\include\freeglut_ext.h
+	<stdarg.h>
+
+1349789940 b:\Övrigt\skola\tsbk03\projekt\watersim\inputhandler.h
+	<iostream>
+	<vector>
+
+1349794143 b:\Övrigt\skola\tsbk03\projekt\watersim\camera.h
+	<GL/gl.h>
+	"utils.h"
+
+1349804850 source:b:\Övrigt\skola\tsbk03\projekt\watersim\objhandler.cpp
+	"ObjHandler.h"
+	<cstdlib>
+
+1349775329 source:b:\Övrigt\skola\tsbk03\projekt\watersim\shadermanager.cpp
+	<iostream>
+	<fstream>
+	<iomanip>
+	<string.h>
+	"ShaderManager.h"
+
+1349794177 source:b:\Övrigt\skola\tsbk03\projekt\watersim\camera.cpp
+	"camera.h"
+	"globals.h"
+
+1349791845 source:b:\Övrigt\skola\tsbk03\projekt\watersim\globals.cpp
+	"globals.h"
+
+1349795166 source:b:\Övrigt\skola\tsbk03\projekt\watersim\main.cpp
+	<freeglut.h>
+	<GL/gl.h>
+	<GL/glext.h>
+	<iostream>
+	<stdio.h>
+	"ShaderManager.h"
+	"ObjHandler.h"
+	"InputHandler.h"
+	"utils.h"
+	"camera.h"
+	"globals.h"
+	"leaves.h"
+
+1349782679 b:\Övrigt\skola\tsbk03\projekt\watersim\leaves.h
+
+1349771820 source:b:\Övrigt\skola\tsbk03\projekt\watersim\model.cpp
+	<windows.h>
+	<glew.h>
+	<wglew.h>
+	<freeglut.h>
+	<OpenGL/gl3.h>
+	<freeglut.h>
+	<GL/glut.h>
+	<GL/gl.h>
+	"model.h"
+	<vector>
+
+1349795252 source:b:\Övrigt\skola\tsbk03\projekt\watersim\utils.cpp
+	<iostream>
+	<math.h>
+	"utils.h"
+
+1348827335 source:b:\Övrigt\skola\tsbk03\projekt\watersim\vectorutils.cpp
+	"vectorUtils.h"
+	<math.h>
+	<iostream>
+	<iomanip>
+

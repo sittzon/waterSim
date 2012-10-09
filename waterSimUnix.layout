@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Debug" />
+	<File name="InputHandler.cpp" open="1" top="0" tabpos="6">
+		<Cursor position="1245" topLine="33" />
+	</File>
+	<File name="ObjHandler.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="16568" topLine="616" />
+	</File>
+	<File name="ShaderManager.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="303" topLine="1" />
+	</File>
+	<File name="ShaderManager.h" open="0" top="0" tabpos="0">
+		<Cursor position="643" topLine="9" />
+	</File>
+	<File name="camera.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1102" topLine="0" />
+	</File>
+	<File name="camera.h" open="0" top="0" tabpos="0">
+		<Cursor position="75" topLine="0" />
+	</File>
+	<File name="globals.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="248" topLine="1" />
+	</File>
+	<File name="globals.h" open="0" top="0" tabpos="0">
+		<Cursor position="921" topLine="27" />
+	</File>
+	<File name="main.cpp" open="1" top="1" tabpos="1">
+		<Cursor position="483" topLine="1" />
+	</File>
+	<File name="model.cpp" open="0" top="0" tabpos="6">
+		<Cursor position="150" topLine="6" />
+	</File>
+	<File name="standard.frag" open="1" top="0" tabpos="3">
+		<Cursor position="1806" topLine="40" />
+	</File>
+	<File name="standard.vert" open="1" top="0" tabpos="2">
+		<Cursor position="235" topLine="0" />
+	</File>
+	<File name="utils.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="116" topLine="0" />
+	</File>
+	<File name="utils.h" open="1" top="0" tabpos="7">
+		<Cursor position="722" topLine="0" />
+	</File>
+	<File name="vectorUtils.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="3968" topLine="0" />
+	</File>
+	<File name="vectorUtils.h" open="0" top="0" tabpos="0">
+		<Cursor position="965" topLine="9" />
+	</File>
+	<File name="velFieldComp.frag" open="1" top="0" tabpos="5">
+		<Cursor position="279" topLine="0" />
+	</File>
+	<File name="velFieldComp.vert" open="1" top="0" tabpos="4">
+		<Cursor position="258" topLine="0" />
+	</File>
+</CodeBlocks_layout_file>
