@@ -21,7 +21,7 @@ Mat::~Mat()
 {
     if(m != NULL)
     {
-        delete m;
+        //delete m; //Throws error- glibc detected : invalid pointer
         m = NULL;
     }
 }

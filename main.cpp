@@ -21,7 +21,6 @@
     //#include <GL/gl.h>
 #endif
 
-
 #include <iostream>
 #include <stdio.h>
 
@@ -31,8 +30,6 @@
 #include "utils.h"
 #include "camera.h"
 #include "globals.h"
-#include "leaves.h"
-
 
 using namespace std;
 
@@ -47,8 +44,8 @@ ShaderManager* SM = new ShaderManager();//Glob->SM;
 Model* model = new Model();
 camera* cam = &Glob->cam;
 GLuint vectorField, scalarField;
-GLuint fieldWidth = width;
-GLuint fieldHeight = height;
+GLuint fieldWidth = 32;
+GLuint fieldHeight = 32;
 GLuint vectorFieldFbo, vectorFieldRenderBuffer;
 //----------------------------------------------------------
 
@@ -69,8 +66,6 @@ void init()
 
     modelToWorld.makeEye();
     Glob->worldToView.makeEye();
-
-
     /*
     lightSourcesColors.makeEye();
     lightSourcesColors[12] = 1.0;
@@ -83,24 +78,27 @@ void init()
     lightSourcesOn[2] = 1;
     lightSourcesOn[3] = 1;
 
-
-
 	//Load, compile and link shaders to shadershaderProgram
 	shaderProgram = SM->loadShaders("standard.vert", "standard.frag");
 	velocityFieldProgram = SM->loadShaders("velFieldComp.vert", "velFieldComp.frag");
     glUseProgram(shaderProgram);
 
-
-    //model = OH->loadObj("models/stdSphere.obj");
+    //Load model(s)
+    model = OH->loadObj("models/stdSphere.obj");
     model = OH->loadObj("models/billboard.obj");
-
 
     //Set camera position
     cam->update();
 
+    //Read raw image texture data
+    ifstream file("testField.raw", ios::binary);
+    int size = ifstreamLength(&file);
+    char buf[size];
+    file.read(buf, size);
+    file.close();
 
     //Create FBO to do texture calculations = velocity field computations
-    createFBOAndBindTexture(vectorFieldFbo, vectorFieldRenderBuffer, vectorField, header_data, fieldWidth, fieldHeight);
+    createFBOAndBindTexture(vectorFieldFbo, vectorFieldRenderBuffer, vectorField, buf, fieldWidth, fieldHeight);
 
 	//Send projection matrix to GPU
     glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "projection"), 1, GL_TRUE, projMatrix.m);
@@ -116,8 +114,6 @@ void init()
 	//glEnable(GL_CULL_FACE);
     //glEnable(GL_TEXTURE_2D);
     //glEnable(GL_TEXTURE_3D);
-
-
 }
 
 void reshape(int w, int h)
@@ -127,28 +123,12 @@ void reshape(int w, int h)
     windowSizeY = h;
     glViewport(0, 0, w, h);
 	cout << windowSizeX << " : " << windowSizeY << endl;
-/*
+
 	//Build and send projection matrix to GPU
-	buildPerspProjMat(projMatrix.m, 60.0f, (float)w/h, 0.5f, 5000.0f);
-	glUseProgram(program);
-	glUniformMatrix4fv(glGetUniformLocation(program, "projection"), 1, GL_TRUE, projMatrix.m);
+	buildPerspProjMat(projMatrix.m, 60.0f, (float)w/h, 0.1f, 500.0f);
+	glUseProgram(shaderProgram);
+	glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "projection"), 1, GL_TRUE, projMatrix.m);
 
-	glUseProgram(spriteProgram);
-	glUniformMatrix4fv(glGetUniformLocation(spriteProgram, "projection"), 1, GL_TRUE, projMatrix.m);
-
-	glUseProgram(pointsProgram);
-	glUniformMatrix4fv(glGetUniformLocation(pointsProgram, "projection"), 1, GL_TRUE, projMatrix.m);
-
-	glUseProgram(normalsProgram);
-	glUniformMatrix4fv(glGetUniformLocation(normalsProgram, "projection"), 1, GL_TRUE, projMatrix.m);
-
-    // ShadowMaps
-	glUseProgram(shadowMapsLightRenderProgram);
-	glUniformMatrix4fv(glGetUniformLocation(shadowMapsLightRenderProgram, "projection"), 1, GL_TRUE, projMatrix.m);
-
-	glUseProgram(shadowMapsProgram);
-	glUniformMatrix4fv(glGetUniformLocation(shadowMapsProgram, "projection"), 1, GL_TRUE, projMatrix.m);
-*/
 
     glutPostRedisplay();
 }
@@ -157,7 +137,6 @@ void display()
 {
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
     glUseProgram(shaderProgram);
-
 
     //Clear screen
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -175,7 +154,7 @@ void display()
 	//Send modelToWorld matrix to GPU
     glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "modelToWorld"), 1, GL_TRUE, modelToWorld.m);
     //Send camerapos matrix to GPU
-    glUniform3f(glGetUniformLocation(shaderProgram, "cameraPos"),  cam->pos[0], cam->pos[1], cam->pos[2]);
+    glUniform3f(glGetUniformLocation(shaderProgram, "cameraPos"), cam->pos[0], cam->pos[1], cam->pos[2]);
 	// Update which lights to show
 	glUniform4f(glGetUniformLocation(shaderProgram, "lightSourcesOn"), lightSourcesOn[0],lightSourcesOn[1], lightSourcesOn[2], lightSourcesOn[3]);
 
@@ -189,14 +168,15 @@ void display()
 
     //Render to texture FBO = Do calculations!
     //-----------------------------------------
-    /*glBindFramebuffer(GL_FRAMEBUFFER, vectorFieldFbo);
+    /*
+    glBindFramebuffer(GL_FRAMEBUFFER, vectorFieldFbo);
     glUseProgram(velocityFieldProgram);
     glActiveTexture(GL_TEXTURE0);
     glUniform1i(glGetUniformLocation(velocityFieldProgram, "texUnit"), 0);
-*/
+
 	//Swap buffers - redraw
 	glutSwapBuffers();
-
+*/
     if (glGetError() != 0)
         cout << "GLError" << endl;
 }
@@ -220,7 +200,6 @@ void motionFunc(int x, int y)
 void keyboard(unsigned char key, int x, int y)
 {
     IH->handleKeyboard(key, x, y);
-    //cam.update();
 }
 
 void mouseWheel(int button, int dir, int x, int y)
@@ -272,16 +251,18 @@ int main(int argc, char **argv)
 {
 
     glInit(argc, argv, 1680/2, 1050/2);
+    #ifdef GLEW_STATIC
     GLenum err = glewInit();
     if (GLEW_OK != err)
     {
         /* Problem: glewInit failed, something is seriously wrong. */
         fprintf(stderr, "GLEW Error: %s\n", glewGetErrorString(err));
     }
-
+    #endif
 
     init();
     glutMainLoop();
+    cout << "Process exited normally" << endl;
 
     return 0;
 }

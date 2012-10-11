@@ -17,9 +17,11 @@ void main(void)
 {
 
     //Vector field operations on texture
+    //Get size of texture
 
+    //outColor = textureOffset(texUnit, exTexCoord, ivec2(1,1));
 
-
+    float r =  texture2D(texUnit, exTexCoord).r;
 
     outColor = texture2D(texUnit, exTexCoord);
 }

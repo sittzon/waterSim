@@ -60,25 +60,11 @@ void main(void)
 
 	//Total output light    //Clicking s toggles between modes
 	//--------------------------------------------------------
-	//if (shading == 0)       //Everything
-	//{
-		//outColor = clamp(ka*Iamb + kd*Idiff + ks*Ispec, 0, 1);// + exNormal;// vec3(1.0, exTexCoord);// * texture(texUnit, exTexCoord,  1.0)
-		outColor = vec4(clamp(ka*Iamb + kd*Idiff + ks*Ispec, 0, 1), 1.0) * texture2D(texUnit, exTexCoord);
-		//outColor = vec3(1.0, exTexCoord);
-    /*}
+    //outColor = clamp(ka*Iamb + kd*Idiff + ks*Ispec, 0, 1);// + exNormal;// vec3(1.0, exTexCoord);// * texture(texUnit, exTexCoord,  1.0)
+    outColor = vec4(clamp(ka*Iamb + kd*Idiff + ks*Ispec, 0, 1), 1.0) * texture2D(texUnit, exTexCoord);
 
-    else if(shading == 1)                   //SER KONSTIG UT
-    {
-        outColor = clamp(kd*Idiff, 0, 1);
-    }
-    else if(shading == 2)
-    {
-        outColor = clamp(ks*Ispec, 0, 1);
-    }
-    else
-    {
-        outColor = clamp(ka*Iamb, 0, 1);
-    }*/
+    //vec4 color = texture2D(texUnit, exTexCoord);
+    //if (color == vec4(1.0,0.0,0.0,1.0))
+    //    discard;
 
-    //outColor = vec3(1.0f);
 }

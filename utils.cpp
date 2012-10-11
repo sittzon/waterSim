@@ -178,11 +178,11 @@ void createFBOAndBindTexture(GLuint fboId, GLuint rboId, GLuint texId, const GLv
     //Create texture
     glGenTextures(1, &texId);
     glBindTexture(GL_TEXTURE_2D, texId);
-    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, texData);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB8, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, texData);
     //glBindTexture(GL_TEXTURE_2D, 0);
 
     //Renderbuffer
@@ -200,10 +200,21 @@ void createFBOAndBindTexture(GLuint fboId, GLuint rboId, GLuint texId, const GLv
     //Check status
     status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
     if(status != GL_FRAMEBUFFER_COMPLETE)
-        cout << "Framebuffer construction error" << endl;
+        cerr << "Framebuffer construction error" << endl;
 
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
- }
+}
+
+int ifstreamLength(ifstream *is)
+{
+    int end;
+    // get length of file:
+    is->seekg (0, ios::end);
+    end = is->tellg();
+    is->seekg (0, ios::beg);
+
+    return end;
+}
 
 #endif
 
