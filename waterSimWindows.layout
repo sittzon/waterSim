@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="InputHandler.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="148" topLine="0" />
+	<File name="InputHandler.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="6101" topLine="168" />
 	</File>
 	<File name="InputHandler.h" open="0" top="0" tabpos="0">
 		<Cursor position="374" topLine="0" />
 	</File>
-	<File name="ObjHandler.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="380" topLine="0" />
+	<File name="ObjHandler.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="2264" topLine="71" />
 	</File>
-	<File name="ObjHandler.h" open="0" top="0" tabpos="3">
+	<File name="ObjHandler.h" open="1" top="0" tabpos="3">
 		<Cursor position="767" topLine="15" />
 	</File>
-	<File name="ShaderManager.cpp" open="0" top="0" tabpos="6">
-		<Cursor position="2311" topLine="70" />
+	<File name="ShaderManager.cpp" open="1" top="0" tabpos="6">
+		<Cursor position="661" topLine="10" />
 	</File>
-	<File name="ShaderManager.h" open="0" top="0" tabpos="5">
+	<File name="ShaderManager.h" open="1" top="0" tabpos="5">
 		<Cursor position="433" topLine="11" />
 	</File>
 	<File name="bmpReader.cpp" open="0" top="0" tabpos="0">
@@ -31,16 +31,13 @@
 	<File name="globals.h" open="0" top="0" tabpos="0">
 		<Cursor position="186" topLine="0" />
 	</File>
-	<File name="main.cpp" open="1" top="1" tabpos="0">
-		<Cursor position="3903" topLine="96" />
+	<File name="main.cpp" open="1" top="1" tabpos="2">
+		<Cursor position="5106" topLine="151" />
 	</File>
 	<File name="model.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="9417" topLine="338" />
+		<Cursor position="301" topLine="0" />
 	</File>
 	<File name="utils.h" open="0" top="0" tabpos="2">
 		<Cursor position="97" topLine="0" />
-	</File>
-	<File name="vectorUtils.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="375" topLine="4" />
 	</File>
 </CodeBlocks_layout_file>

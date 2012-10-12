@@ -12,7 +12,6 @@
 #include <string>
 #include <cstdlib>
 
-
 #ifdef _WIN32
     //#include <windows.h>
     #ifndef GLEW_STATIC

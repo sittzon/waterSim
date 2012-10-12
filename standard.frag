@@ -67,4 +67,6 @@ void main(void)
     //if (color == vec4(1.0,0.0,0.0,1.0))
     //    discard;
 
+    //outColor = vec4(1.0);
+
 }

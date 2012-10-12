@@ -15,8 +15,8 @@ void lookAt(float px, float py, float pz,
             float lx, float ly, float lz,
             float vx, float vy, float vz,
             float *m);
-void createFBOAndBindTexture(unsigned int fboId, unsigned int rboId, unsigned int texId, const void* texData,
-                             const unsigned int width, const unsigned int height);
+void createFBO(unsigned int& fboId);
+void createFBOAndBindTexture(unsigned int& fboId, unsigned int& rboId, unsigned int* texId, unsigned int* texId2,const void* texData);
 int ifstreamLength(ifstream *is);
 
 #endif

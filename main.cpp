@@ -27,6 +27,7 @@
 #include "ShaderManager.h"
 #include "ObjHandler.h"
 #include "InputHandler.h"
+#include "DrawHandler.h"
 #include "utils.h"
 #include "camera.h"
 #include "globals.h"
@@ -36,17 +37,12 @@ using namespace std;
 //Globals
 //----------------------------------------------------------
 Global* Glob = getGlobal();
-ObjHandler* OH = Glob->Load;
+ObjHandler* OH = Glob->OH;
 InputHandler* IH = Glob->IH;
-GLuint shaderProgram, velocityFieldProgram;
-Mat projMatrix, modelToWorld, worldToView, lightSourcesColors, lightSourcesDirections, lightSourcesOn;
-ShaderManager* SM = new ShaderManager();//Glob->SM;
-Model* model = new Model();
-camera* cam = &Glob->cam;
-GLuint vectorField, scalarField;
-GLuint fieldWidth = 32;
-GLuint fieldHeight = 32;
-GLuint vectorFieldFbo, vectorFieldRenderBuffer;
+DrawHandler* DH = Glob->DH;
+SimulateHandler* SH = Glob->SH;
+ShaderManager* SM = Glob->SM;
+camera* cam = Glob->cam;
 //----------------------------------------------------------
 
 void init()
@@ -58,55 +54,11 @@ void init()
 	cout << "Max GLSL version supported: " << glGetString(GL_SHADING_LANGUAGE_VERSION) << endl << endl;
 	//cout << "OpenGL extensions: " << glGetString(GL_EXTENSIONS) << endl;
 
-	//Build perpective projection matrix
-	buildPerspProjMat(projMatrix.m, 60.0f, 1.778f, 0.1f, 500.0f);
-
-	lightSourcesColors.m = getGlobal()->lightSourcesColors;
-	lightSourcesDirections.m = getGlobal()->lightSourcesDirections;
-
-    modelToWorld.makeEye();
-    Glob->worldToView.makeEye();
-    /*
-    lightSourcesColors.makeEye();
-    lightSourcesColors[12] = 1.0;
-    lightSourcesColors[13] = 1.0;
-    lightSourcesColors[14] = 1.0;
-    lightSourcesDirections.makeEye();
-    */
-    lightSourcesOn[0] = 1;
-    lightSourcesOn[1] = 1;
-    lightSourcesOn[2] = 1;
-    lightSourcesOn[3] = 1;
-
-	//Load, compile and link shaders to shadershaderProgram
-	shaderProgram = SM->loadShaders("standard.vert", "standard.frag");
-	velocityFieldProgram = SM->loadShaders("velFieldComp.vert", "velFieldComp.frag");
-    glUseProgram(shaderProgram);
-
-    //Load model(s)
-    model = OH->loadObj("models/stdSphere.obj");
-    model = OH->loadObj("models/billboard.obj");
+    DH->init();
+    SH->init();
 
     //Set camera position
     cam->update();
-
-    //Read raw image texture data
-    ifstream file("testField.raw", ios::binary);
-    int size = ifstreamLength(&file);
-    char buf[size];
-    file.read(buf, size);
-    file.close();
-
-    //Create FBO to do texture calculations = velocity field computations
-    createFBOAndBindTexture(vectorFieldFbo, vectorFieldRenderBuffer, vectorField, buf, fieldWidth, fieldHeight);
-
-	//Send projection matrix to GPU
-    glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "projection"), 1, GL_TRUE, projMatrix.m);
-
-	//Send light colors and positions to GPU
-	glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "lightSourcesColors"), 1, GL_FALSE, lightSourcesColors.m);
-	glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "lightSourcesDirections"), 1, GL_TRUE, lightSourcesDirections.m);
-	glUniform4f(glGetUniformLocation(shaderProgram, "lightSourcesOn"), lightSourcesOn[0],lightSourcesOn[1], lightSourcesOn[2], lightSourcesOn[3]);
 
 	//GL Inits
 	glClearColor(0.0, 0.0, 0.0, 1.0);
@@ -118,67 +70,24 @@ void init()
 
 void reshape(int w, int h)
 {
-    int windowSizeX, windowSizeY;
-	windowSizeX = w;
-    windowSizeY = h;
-    glViewport(0, 0, w, h);
-	cout << windowSizeX << " : " << windowSizeY << endl;
-
-	//Build and send projection matrix to GPU
-	buildPerspProjMat(projMatrix.m, 60.0f, (float)w/h, 0.1f, 500.0f);
-	glUseProgram(shaderProgram);
-	glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "projection"), 1, GL_TRUE, projMatrix.m);
-
-
-    glutPostRedisplay();
+    DH->reshape(w, h);
 }
 
 void display()
 {
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
-    glUseProgram(shaderProgram);
+    //Render results to screen
+    DH->render();
 
-    //Clear screen
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	//cam->rotate(0.02, 0.0);
-
-	cam->update();
-
-	//Send camera position to GPU
-	glUniform3f(glGetUniformLocation(shaderProgram, "cameraPos"), cam->pos[0], cam->pos[1], cam->pos[2]);
-	// Calculate world to view matrix
-	lookAt(cam->pos[0],cam->pos[1],cam->pos[2], cam->lookAt[0],cam->lookAt[1],cam->lookAt[2], 0.0f,1.0f,0.0f, Glob->worldToView.m);
-    //Send worldToView matrix to GPU
-    glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "worldToView"), 1, GL_TRUE, Glob->worldToView.m);
-	//Send modelToWorld matrix to GPU
-    glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "modelToWorld"), 1, GL_TRUE, modelToWorld.m);
-    //Send camerapos matrix to GPU
-    glUniform3f(glGetUniformLocation(shaderProgram, "cameraPos"), cam->pos[0], cam->pos[1], cam->pos[2]);
-	// Update which lights to show
-	glUniform4f(glGetUniformLocation(shaderProgram, "lightSourcesOn"), lightSourcesOn[0],lightSourcesOn[1], lightSourcesOn[2], lightSourcesOn[3]);
-
-    //Draw model
-    glActiveTexture(GL_TEXTURE0);
-    glUniform1i(glGetUniformLocation(shaderProgram, "texUnit"), 0);
-    OH->drawModel(model);
-
-	//Swap buffers - redraw
-	glutSwapBuffers();
-
-    //Render to texture FBO = Do calculations!
-    //-----------------------------------------
-    /*
-    glBindFramebuffer(GL_FRAMEBUFFER, vectorFieldFbo);
-    glUseProgram(velocityFieldProgram);
-    glActiveTexture(GL_TEXTURE0);
-    glUniform1i(glGetUniformLocation(velocityFieldProgram, "texUnit"), 0);
-
-	//Swap buffers - redraw
-	glutSwapBuffers();
-*/
+    //Errors in render to screen?
     if (glGetError() != 0)
-        cout << "GLError" << endl;
+        cout << "GLError in screenrender" << endl;
+
+    //Simulate flow
+    SH->simulate();
+
+    //Errors in simulate flow?
+    if (glGetError() != 0)
+        cout << "GLError in simulate" << endl;
 }
 
 void timerFunc(int i)
@@ -249,7 +158,6 @@ void glInit(int &argc, char **argv, int xwidth, int ywidth)
 
 int main(int argc, char **argv)
 {
-
     glInit(argc, argv, 1680/2, 1050/2);
     #ifdef GLEW_STATIC
     GLenum err = glewInit();

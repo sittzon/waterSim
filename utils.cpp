@@ -4,6 +4,8 @@
 #include <iostream>
 #include <math.h>
 #include "utils.h"
+#include "globals.h"
+#include "printOpenGLFBOError.h"
 
 using namespace std;
 
@@ -171,36 +173,102 @@ void lookAt(float px, float py, float pz,
 	m[12] = 0.0f; m[13] = 0.0f; m[14] = 0.0f; m[15] = 1.0f;
 }
 
-void createFBOAndBindTexture(GLuint fboId, GLuint rboId, GLuint texId, const GLvoid* texData, const unsigned int width, const unsigned int height)
+void createFBO(GLuint& fboId)
 {
     GLenum status;
-
-    //Create texture
-    glGenTextures(1, &texId);
-    glBindTexture(GL_TEXTURE_2D, texId);
-    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB8, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, texData);
-    //glBindTexture(GL_TEXTURE_2D, 0);
-
-    //Renderbuffer
-    glGenRenderbuffers(1, &rboId);
-    glBindRenderbuffer(GL_RENDERBUFFER, rboId);
-    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, width, height);
-    glBindRenderbuffer(GL_RENDERBUFFER, 0);
-
     //Framebuffer
     glGenFramebuffers(1, &fboId);
-    glBindFramebuffer(GL_FRAMEBUFFER, fboId);
-    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texId, 0);
-    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, rboId);
 
     //Check status
     status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
     if(status != GL_FRAMEBUFFER_COMPLETE)
         cerr << "Framebuffer construction error" << endl;
+
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+}
+
+void createFBOAndBindTexture(GLuint& fboId, GLuint& rboId, GLuint* texId, GLuint* texId2, const GLvoid* texData)
+{
+    GLenum status;
+
+    //Create textures
+    glGenTextures(getGlobal()->height, texId);
+    glGenTextures(getGlobal()->height, texId2);
+
+    //Init textures
+    for(int i = 0; i < getGlobal()->height; i++)
+    {
+
+        glBindTexture(GL_TEXTURE_2D, texId[i]);
+        status = glGetError();
+        if(status != 0)
+        {
+            cout << "createFBOAndBindTexture:" << endl;
+            cout << "texId[" << i << "]:" << texId[i] << endl;
+            cout << "gl Error: " << status << endl;
+        }
+        glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T, GL_REPEAT);
+        //glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB8, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, texData);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA32F, getGlobal()->width, getGlobal()->breadth, 0, GL_RGBA, GL_FLOAT, NULL);
+
+        glBindTexture(GL_TEXTURE_2D, texId2[i]);
+        glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T, GL_REPEAT);
+        //glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB8, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, texData);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA32F, getGlobal()->width, getGlobal()->breadth, 0, GL_RGBA, GL_FLOAT, NULL);
+
+        status = glGetError();
+        if(status != 0)
+        {
+            cout << "createFBOAndBindTexture:" << endl;
+            cout << "gl Error: " << status << endl;
+        }
+    }
+
+    glBindTexture(GL_TEXTURE_2D, 0);
+
+    status = glGetError();
+    if(status != 0)
+    {
+        cout << "createFBOAndBindTexture:" << endl;
+        cout << "gl Error: " << status << endl;
+    }
+
+    //Renderbuffer
+    glGenRenderbuffers(1, &rboId);
+    glBindRenderbuffer(GL_RENDERBUFFER, rboId);
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, getGlobal()->width, getGlobal()->height);
+    glBindRenderbuffer(GL_RENDERBUFFER, 0);
+
+    status = glGetError();
+    if(status != 0)
+    {
+        cout << "createFBOAndBindTexture:" << endl;
+        cout << "gl Error: " << status << endl;
+    }
+
+    //Framebuffer
+    glGenFramebuffers(1, &fboId);
+    glBindFramebuffer(GL_FRAMEBUFFER, fboId);
+
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D,  texId2[0], 0);
+
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, rboId);
+
+    status = glGetError();
+    if(status != 0)
+    {
+        cout << "createFBOAndBindTexture:" << endl;
+        cout << "gl Error: " << status << endl;
+    }
+
+    //Check status
+    printOpenGLFBOError(fboId);
 
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }

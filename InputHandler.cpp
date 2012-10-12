@@ -40,28 +40,27 @@ void InputHandler::handleKeyboard(unsigned char key, int c, int r)
 
     if (key == 'w')
     {
-        getGlobal()->cam.radius *= 0.98;
+        getGlobal()->cam->radius *= 0.98;
     }
     else if (key == 's')
     {
-        getGlobal()->cam.radius *= 1.02;
+        getGlobal()->cam->radius *= 1.02;
     }
     else if (key == 'a')
     {
-        getGlobal()->cam.pan(0.05, 0.0);
-
+        getGlobal()->cam->pan(0.05, 0.0);
     }
     else if (key == 'd')
     {
-        getGlobal()->cam.pan(-0.05, 0.0);
+        getGlobal()->cam->pan(-0.05, 0.0);
     }
     else if (key == 'q')
     {
-        getGlobal()->cam.pan(0.0, 0.1);
+        getGlobal()->cam->pan(0.0, 0.1);
     }
-        else if (key == 'e')
+    else if (key == 'e')
     {
-        getGlobal()->cam.pan(0.0, -0.1);
+        getGlobal()->cam->pan(0.0, -0.1);
     }
 
 }
@@ -132,21 +131,21 @@ void InputHandler::handleMotion(int c, int r)
 	    GLfloat angleHorizontal = (c - cStart) * 0.005f;
 	    GLfloat angleVertical = (rStart - r) * 0.005f;
 
-	     getGlobal()->cam.pan(angleHorizontal, angleVertical);
+	     getGlobal()->cam->pan(angleHorizontal, angleVertical);
         //getGlobal()->angleHorizontal += (x - xStart) * 0.005f;
         //getGlobal()->cameraAngleVertical -= (y - yStart) * 0.005f;
 
         cStart = c;
         rStart = r;
 
-        getGlobal()->cam.rotate(angleHorizontal, angleVertical);
+        getGlobal()->cam->rotate(angleHorizontal, angleVertical);
 	}
 	else if (mouseMiddleDown == true)
 	{
-        GLfloat dx = -(cStart-c)*getGlobal()->cam.radius*0.0025f;
-        GLfloat dy = (rStart-r)*getGlobal()->cam.radius*0.0025f;
+        GLfloat dx = -(cStart-c)*getGlobal()->cam->radius*0.0025f;
+        GLfloat dy = (rStart-r)*getGlobal()->cam->radius*0.0025f;
 
-        getGlobal()->cam.pan(dx, dy);
+        getGlobal()->cam->pan(dx, dy);
 
 		cStart = c;
         rStart = r;
@@ -161,9 +160,9 @@ void InputHandler::handleScroll(int dir)
     {
 
         if (dir < 0)
-            getGlobal()->cam.zoom(1.05f);
+            getGlobal()->cam->zoom(1.05f);
         else
-            getGlobal()->cam.zoom(0.95f);
+            getGlobal()->cam->zoom(0.95f);
 
     }
 }
